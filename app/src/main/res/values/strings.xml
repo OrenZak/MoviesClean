@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">MoviesClean</string>
+    <string name="popular_clicked">Popular Clicked succeed</string>
+    <string name="error_message">Error happaned</string>
+</resources>
