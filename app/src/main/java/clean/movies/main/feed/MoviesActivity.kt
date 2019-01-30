@@ -1,6 +1,7 @@
 package clean.movies.main.feed
 
 import android.os.Bundle
+import android.support.v4.content.ContextCompat
 import android.support.v7.widget.LinearLayoutManager
 import clean.movies.main.BaseActivity
 import clean.movies.main.R
@@ -28,6 +29,9 @@ class MoviesActivity : BaseActivity(), MoviesContract.View {
         presenter.onAttach(this)
         recyclerAdapter.setItemClickedListener { _, position -> presenter.itemClicked(position = position) }
 
+        toolbar.title = "Popular Movies"
+        toolbar.setTitleTextColor(ContextCompat.getColor(this, R.color.white))
+        setSupportActionBar(toolbar)
         movies_recycler.layoutManager = LinearLayoutManager(ctx)
         movies_recycler.adapter = recyclerAdapter
 

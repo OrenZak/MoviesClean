@@ -1,4 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="block_margin">8dp</dimen>
+    <dimen name="block_margin">9dp</dimen>
+    <dimen name="main_margin">16dp</dimen>
+
+    <!--Tag shape-->
+    <dimen name="tag_shape_radius">25dp</dimen>
+    <dimen name="min_tag_width">60dp</dimen>
+    <dimen name="min_tag_height">35dp</dimen>
+    <dimen name="tag_margin_right">5dp</dimen>
+    <dimen name="tag_padding_height">3dp</dimen>
+    <dimen name="tag_padding_width">10dp</dimen>
+
 </resources>
