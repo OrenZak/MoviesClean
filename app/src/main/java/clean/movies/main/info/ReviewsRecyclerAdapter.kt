@@ -1,8 +1,8 @@
 package clean.movies.main.info
 
-import clean.movies.main.feed.domain.model.ReviewsResult
+import clean.movies.main.feed.domain.model.ReviewData
 
 interface ReviewsRecyclerAdapter {
 
-    fun setReviews(reviews: ReviewsResult?)
+    fun setReviews(reviews: List<ReviewData>)
 }

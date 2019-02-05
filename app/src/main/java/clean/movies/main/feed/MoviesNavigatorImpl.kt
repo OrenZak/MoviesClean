@@ -4,7 +4,7 @@ import android.content.Intent
 import clean.movies.main.BaseActivity
 import clean.movies.main.feed.domain.model.Movie
 import clean.movies.main.info.MovieInfoActivity
-import clean.movies.main.info.MovieInfoActivity.Companion.MOVIE_EXTRA_KEY
+import clean.movies.main.info.MovieInfoContract.Companion.MOVIE_EXTRA_KEY
 import javax.inject.Inject
 
 class MoviesNavigatorImpl @Inject constructor() : MoviesNavigator {

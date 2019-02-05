@@ -6,8 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     app:cardElevation="5dp"
-    app:cardUseCompatPadding="true"
-    >
+    app:cardUseCompatPadding="true">
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
@@ -30,9 +29,9 @@
             android:layout_margin="10dp"
             android:background="@color/white"
             android:elevation="3dp"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:layout_height="170dp"
@@ -48,23 +47,50 @@
             android:ellipsize="end"
             android:fontFamily="sans-serif-medium"
             android:maxLines="1"
-            android:textSize="18sp"
+            android:shadowColor="@color/black"
+            android:shadowDx="0"
+            android:shadowDy="0"
+            android:shadowRadius="4"
             android:textColor="@color/white"
+            android:textSize="18sp"
             app:layout_constrainedWidth="true"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@id/movie_image"
             app:layout_constraintTop_toTopOf="@+id/movie_image"
-            tools:text="movie title is so long you can't read it" />
+            tools:text="Movie title is so long you can't read it" />
+
+        <TextView
+            android:id="@+id/genres"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/block_margin"
+            android:elevation="3dp"
+            android:ellipsize="end"
+            android:fontFamily="sans-serif-medium"
+            android:maxLines="1"
+            android:shadowColor="@color/black"
+            android:shadowDx="0"
+            android:shadowDy="0"
+            android:shadowRadius="4"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@id/movie_title"
+            app:layout_constraintTop_toBottomOf="@id/movie_title"
+            tools:text="Action | Drama " />
 
         <ImageView
             android:id="@+id/release_date_image"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/block_margin"
-            app:srcCompat="@drawable/baseline_event_white_24"
-            app:layout_constraintBottom_toTopOf="@id/star_image"
-            app:layout_constraintStart_toEndOf="@+id/movie_image" />
+            android:layout_marginTop="@dimen/block_margin"
+            app:layout_constraintStart_toEndOf="@+id/movie_image"
+            app:layout_constraintTop_toBottomOf="@id/genres"
+            app:srcCompat="@drawable/baseline_event_white_24" />
 
         <TextView
             android:id="@+id/release_date"
@@ -86,9 +112,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/block_margin"
-            app:srcCompat="@drawable/baseline_star_rate_white_24"
-            app:layout_constraintBottom_toBottomOf="@+id/movie_image"
-            app:layout_constraintStart_toEndOf="@+id/movie_image" />
+            app:layout_constraintStart_toEndOf="@+id/movie_image"
+            app:layout_constraintTop_toBottomOf="@id/release_date_image"
+            app:srcCompat="@drawable/baseline_star_rate_white_24" />
 
         <TextView
             android:id="@+id/movie_stars"
@@ -102,7 +128,20 @@
             app:layout_constraintBottom_toBottomOf="@+id/star_image"
             app:layout_constraintStart_toEndOf="@+id/star_image"
             app:layout_constraintTop_toTopOf="@+id/star_image"
-            tools:text="6.7" />
+            tools:text="6.7 / 10" />
+
+        <TextView
+            android:id="@+id/vote_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/block_margin"
+            android:elevation="3dp"
+            android:fontFamily="sans-serif"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            app:layout_constraintStart_toEndOf="@id/movie_stars"
+            app:layout_constraintTop_toTopOf="@id/movie_stars"
+            tools:text="(600)" />
 
     </android.support.constraint.ConstraintLayout>
 

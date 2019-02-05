@@ -96,7 +96,7 @@
                 app:layout_constraintTop_toBottomOf="@id/release_date" />
 
             <TextView
-                android:id="@+id/rate"
+                android:id="@+id/rate_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/main_margin"
@@ -113,7 +113,7 @@
                 android:layout_marginTop="@dimen/main_margin"
                 android:orientation="horizontal"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/rate" />
+                app:layout_constraintTop_toBottomOf="@id/rate_text" />
 
             <TextView
                 android:id="@+id/overview_title"
@@ -149,9 +149,10 @@
                 android:layout_marginStart="@dimen/main_margin"
                 android:layout_marginTop="@dimen/main_margin"
                 android:layout_marginEnd="@dimen/main_margin"
-                android:text="Reviews"
+                android:text="@string/reviews"
                 android:textSize="16sp"
                 android:textStyle="bold"
+                android:visibility="gone"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/overview_content" />
 
@@ -160,6 +161,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/block_margin"
+                android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/reviews" />

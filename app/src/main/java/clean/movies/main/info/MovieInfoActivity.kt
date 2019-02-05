@@ -1,9 +1,7 @@
 package clean.movies.main.info
 
 import android.os.Bundle
-import android.support.design.widget.AppBarLayout
 import android.support.v7.widget.LinearLayoutManager
-import android.text.TextUtils
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.widget.LinearLayout
@@ -11,8 +9,7 @@ import android.widget.TextView
 import clean.movies.main.BaseActivity
 import clean.movies.main.BuildConfig
 import clean.movies.main.R
-import clean.movies.main.feed.domain.model.Movie
-import clean.movies.main.util.afterMeasured
+import clean.movies.main.feed.domain.model.ReviewData
 import clean.movies.main.util.ctx
 import clean.movies.main.util.toast
 import clean.movies.main.widget.TagText
@@ -23,69 +20,40 @@ import kotlinx.android.synthetic.main.activity_movie_details.*
 import javax.inject.Inject
 
 
-class MovieInfoActivity : BaseActivity(), YouTubePlayer.OnInitializedListener {
+class MovieInfoActivity : BaseActivity(), YouTubePlayer.OnInitializedListener, MovieInfoContract.View {
 
-
-    companion object {
-        const val MOVIE_EXTRA_KEY = "clean.movies.movie_extra"
-    }
-
-    private lateinit var youTubePlayerFragment: YouTubePlayerSupportFragment
-    private var movie: Movie? = null
+    @Inject
+    internal lateinit var presenter: MovieInfoContract.Presenter<MovieInfoContract.View, MovieInfoContract.Interactor>
 
     @Inject
     internal lateinit var reviewsRecyclerAdapter: ReviewsRecyclerAdapterImpl
 
     private var toolbarTitle: TextView? = null
+    private var youTubePlayer: YouTubePlayer? = null
+    private lateinit var youTubePlayerFragment: YouTubePlayerSupportFragment
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_movie_details)
-        toolbar.title = "This is me"
         setSupportActionBar(toolbar)
         findToolbarTextView()
-        movie = intent?.extras?.getParcelable(MOVIE_EXTRA_KEY) as Movie
+        presenter.onAttach(this)
+        presenter.setIntent(intent)
         youTubePlayerFragment = supportFragmentManager.findFragmentById(R.id.youtube_fragment) as YouTubePlayerSupportFragment
         youTubePlayerFragment.initialize(BuildConfig.YOUTUBE_API_KEY, this)
-        movie?.let { movie ->
-            movie_title.text = movie.title
-            release_date.text = movie.releaseDate
-            rate.text = "${movie.voteAverage} / 10"
-            overview_content.text = movie.overview
-            movie.genres?.forEachIndexed { index, genreData ->
-                val tag = TagText(ctx)
-                tag.setText(genreData.name)
-                tags_container.addView(tag)
-                if (index < movie.genres!!.size) {
-                    (tag.layoutParams as LinearLayout.LayoutParams).rightMargin =
-                            resources.getDimensionPixelSize(R.dimen.tag_margin_right)
-                }
-            }
-            reviewsRecyclerAdapter.setReviews(movie.reviews)
-            review_recycler.layoutManager = LinearLayoutManager(ctx)
-            review_recycler.adapter = reviewsRecyclerAdapter
-        }
 
         app_bar_layout.addOnOffsetChangedListener { appBarLayout, verticalOffset ->
-            movie_title.visibility =
-                    if (Math.abs(verticalOffset) == appBarLayout.totalScrollRange) {
-                        (toolbarTitle != movie_title.text).run {
-                            toolbarTitle?.let {
-
-                                it.text = movie_title.text
-                            }
-                        }
-                        GONE
-                    } else {
-                        (!TextUtils.isEmpty(toolbar.title)).run {
-                            toolbarTitle?.text = ""
-                        }
-                        VISIBLE
-                    }
+            presenter.onOffsetChanged(appBarLayout, verticalOffset)
         }
-        //TODO should listen for start, pause and finished.
+    }
 
+    override fun setToolbarTitle(title: String?) {
+        toolbarTitle?.text = title
+    }
+
+    override fun setMovieTitleVisibility(isVisible: Boolean) {
+        movie_title.visibility = if (isVisible) VISIBLE else GONE
     }
 
     private fun findToolbarTextView() {
@@ -103,13 +71,48 @@ class MovieInfoActivity : BaseActivity(), YouTubePlayer.OnInitializedListener {
 
 
     override fun onInitializationSuccess(p0: YouTubePlayer.Provider?, p1: YouTubePlayer?, p2: Boolean) {
-        movie?.apply {
-            p1?.cueVideo(videos?.results?.get(0)?.key)
-        }
+        youTubePlayer = p1
+        presenter.onYoutubeInitSuccess()
     }
 
     override fun onInitializationFailure(p0: YouTubePlayer.Provider?, p1: YouTubeInitializationResult?) {
         p1?.getErrorDialog(this, 2)
+    }
+
+    override fun setMovieTitle(title: String) {
+        movie_title.text = title
+    }
+
+    override fun setReleaseDate(releaseDate: String) {
+        release_date.text = releaseDate
+    }
+
+    override fun setRate(rate: String) {
+        rate_text.text = rate
+    }
+
+    override fun setOverview(overview: String) {
+        overview_content.text = overview
+    }
+
+    override fun addTag(tag: String, isLast: Boolean) {
+        val tagView = TagText(ctx)
+        tagView.text = tag
+        tags_container.addView(tagView)
+        if (!isLast) {
+            (tagView.layoutParams as LinearLayout.LayoutParams).rightMargin =
+                    resources.getDimensionPixelSize(R.dimen.tag_margin_right)
+        }
+    }
+
+    override fun setReviews(reviews: List<ReviewData>) {
+        reviewsRecyclerAdapter.setReviews(reviews)
+        review_recycler.layoutManager = LinearLayoutManager(ctx)
+        review_recycler.adapter = reviewsRecyclerAdapter
+    }
+
+    override fun cueVideo(videoUrl: String) {
+        youTubePlayer?.cueVideo(videoUrl)
     }
 
     override fun showToast(message: Int) {

@@ -1,5 +1,9 @@
 <resources>
     <string name="app_name">MoviesClean</string>
-    <string name="popular_clicked">Popular Clicked succeed</string>
-    <string name="error_message">Error happaned</string>
+    <string name="error_message">Error happened</string>
+    <string name="reviews">Reviews</string>
+    <string name="run_time_s_minutes">Run time: %d minutes</string>
+    <string name="avg_vote">%.1f / 10</string>
+    <string name="vote_count">(%d)</string>
+    <string name="release_date">Release date: %s</string>
 </resources>

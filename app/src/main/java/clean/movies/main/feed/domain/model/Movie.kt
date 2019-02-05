@@ -13,6 +13,9 @@ data class Movie(
         @SerializedName("budget")
         var budget: Int? = null,
 
+        @SerializedName("genre_ids")
+        var genreIds: List<Int>? = null,
+
         @SerializedName("genres")
         var genres: List<GenreData>? = null,
 

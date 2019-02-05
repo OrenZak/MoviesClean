@@ -34,7 +34,6 @@ class MoviesActivity : BaseActivity(), MoviesContract.View {
         setSupportActionBar(toolbar)
         movies_recycler.layoutManager = LinearLayoutManager(ctx)
         movies_recycler.adapter = recyclerAdapter
-
     }
 
     override fun navigateToMovieDetails(movie: Movie) {
@@ -42,13 +41,11 @@ class MoviesActivity : BaseActivity(), MoviesContract.View {
     }
 
     override fun setMovies(movies: List<Movie>) {
-        showToast(Messages.POPULAR_CLICKED)
         recyclerAdapter.setMovies(movies)
     }
 
     override fun showToast(@Messages.Message message: Int) {
         when (message) {
-            Messages.POPULAR_CLICKED -> toast(R.string.popular_clicked)
             Messages.SHOW_ERROR -> toast(R.string.error_message)
         }
     }

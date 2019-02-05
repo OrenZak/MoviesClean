@@ -7,15 +7,14 @@ import android.view.ViewGroup
 import android.widget.TextView
 import clean.movies.main.R
 import clean.movies.main.feed.domain.model.ReviewData
-import clean.movies.main.feed.domain.model.ReviewsResult
 import javax.inject.Inject
 
 class ReviewsRecyclerAdapterImpl @Inject constructor() : RecyclerView.Adapter<ReviewsRecyclerAdapterImpl.ViewHolder>(), ReviewsRecyclerAdapter {
 
     private var reviews: ArrayList<ReviewData>? = null
 
-    override fun setReviews(reviews: ReviewsResult?) {
-        reviews?.results?.forEach { review ->
+    override fun setReviews(reviews: List<ReviewData>) {
+        reviews.forEach { review ->
             this.reviews?.add(review) ?: run {
                 this.reviews = arrayListOf(review)
             }

@@ -4,6 +4,7 @@ package clean.movies.main.feed
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.INVISIBLE
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
@@ -12,6 +13,7 @@ import clean.movies.main.BlurTransformation
 import clean.movies.main.R
 import clean.movies.main.feed.domain.model.Movie
 import clean.movies.main.feed.domain.OnItemClickListener
+import clean.movies.main.feed.domain.model.GenreConverter
 import clean.movies.main.network.ApiEndPoint
 import clean.movies.main.util.ctx
 import clean.movies.main.util.screenWidth
@@ -67,7 +69,15 @@ class MoviesRecyclerAdapterImpl @Inject constructor() : RecyclerView.Adapter<Mov
                     .into(holder.blurImageBackground)
 
             holder.title.text = title
-            holder.starts.text = voteAverage.toString()
+
+            genreIds?.let {
+                 holder.genres.text = GenreConverter.getAsStringFormatted(it)
+            } ?: kotlin.run {
+                 holder.genres.visibility = INVISIBLE
+             }
+            holder.rate.text = holder.itemView.ctx.getString(R.string.avg_vote, voteAverage)
+            holder.voteCount.text = holder.itemView.ctx.getString(R.string.vote_count, voteCount)
+            holder.releaseDate.text = releaseDate
         }
         holder.itemView.setOnClickListener {
             itemClickListener?.onItemCLicked(it, holder.layoutPosition)
@@ -78,7 +88,10 @@ class MoviesRecyclerAdapterImpl @Inject constructor() : RecyclerView.Adapter<Mov
         val image: ImageView = itemView.findViewById(R.id.movie_image)
         val blurImageBackground: ImageView = itemView.findViewById(R.id.blur_image_background)
         val title: TextView = itemView.findViewById(R.id.movie_title)
-        val starts: TextView = itemView.findViewById(R.id.movie_stars)
+        val genres: TextView = itemView.findViewById(R.id.genres)
+        val rate: TextView = itemView.findViewById(R.id.movie_stars)
+        val voteCount: TextView = itemView.findViewById(R.id.vote_count)
+        val releaseDate: TextView = itemView.findViewById(R.id.release_date)
 
         var imageWidth: Int = 0
         var imageHeight: Int = 0
