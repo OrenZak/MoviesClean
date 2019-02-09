@@ -9,7 +9,9 @@ import clean.movies.main.feed.domain.model.Messages
 import clean.movies.main.feed.domain.model.Movie
 import clean.movies.main.util.ctx
 import clean.movies.main.util.toast
+import clean.movies.main.widget.SharedTransitionList
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.recycler_item_movie.*
 import javax.inject.Inject
 
 class MoviesActivity : BaseActivity(), MoviesContract.View {

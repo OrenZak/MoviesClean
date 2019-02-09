@@ -6,4 +6,8 @@
     <string name="avg_vote">%.1f / 10</string>
     <string name="vote_count">(%d)</string>
     <string name="release_date">Release date: %s</string>
+    <string name="release_date_transition">releaseDateTransition</string>
+    <string name="movie_title_transition">movie title transition</string>
+    <string name="vote_avg_transition">vote avg transition</string>
+    <string name="movie_background_transition">movie background transition</string>
 </resources>

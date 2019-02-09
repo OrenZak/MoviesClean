@@ -89,7 +89,7 @@ class MoviesRecyclerAdapterImpl @Inject constructor() : RecyclerView.Adapter<Mov
         val blurImageBackground: ImageView = itemView.findViewById(R.id.blur_image_background)
         val title: TextView = itemView.findViewById(R.id.movie_title)
         val genres: TextView = itemView.findViewById(R.id.genres)
-        val rate: TextView = itemView.findViewById(R.id.movie_stars)
+        val rate: TextView = itemView.findViewById(R.id.vote_avg)
         val voteCount: TextView = itemView.findViewById(R.id.vote_count)
         val releaseDate: TextView = itemView.findViewById(R.id.release_date)
 

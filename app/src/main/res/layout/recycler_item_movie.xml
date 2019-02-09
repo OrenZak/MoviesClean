@@ -17,6 +17,7 @@
             android:id="@+id/blur_image_background"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:transitionName="@string/movie_background_transition"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -53,6 +54,7 @@
             android:shadowRadius="4"
             android:textColor="@color/white"
             android:textSize="18sp"
+            android:transitionName="@string/movie_title_transition"
             app:layout_constrainedWidth="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -102,6 +104,7 @@
             android:fontFamily="sans-serif"
             android:textColor="@color/white"
             android:textSize="16sp"
+            android:transitionName="@string/release_date_transition"
             app:layout_constraintBottom_toBottomOf="@+id/release_date_image"
             app:layout_constraintStart_toEndOf="@+id/release_date_image"
             app:layout_constraintTop_toTopOf="@+id/release_date_image"
@@ -117,7 +120,7 @@
             app:srcCompat="@drawable/baseline_star_rate_white_24" />
 
         <TextView
-            android:id="@+id/movie_stars"
+            android:id="@+id/vote_avg"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/block_margin"
@@ -125,6 +128,7 @@
             android:fontFamily="sans-serif"
             android:textColor="@color/white"
             android:textSize="16sp"
+            android:transitionName="@string/vote_avg_transition"
             app:layout_constraintBottom_toBottomOf="@+id/star_image"
             app:layout_constraintStart_toEndOf="@+id/star_image"
             app:layout_constraintTop_toTopOf="@+id/star_image"
@@ -139,8 +143,8 @@
             android:fontFamily="sans-serif"
             android:textColor="@color/white"
             android:textSize="16sp"
-            app:layout_constraintStart_toEndOf="@id/movie_stars"
-            app:layout_constraintTop_toTopOf="@id/movie_stars"
+            app:layout_constraintStart_toEndOf="@id/vote_avg"
+            app:layout_constraintTop_toTopOf="@id/vote_avg"
             tools:text="(600)" />
 
     </android.support.constraint.ConstraintLayout>

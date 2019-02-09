@@ -25,7 +25,8 @@
                 android:id="@+id/youtube_fragment"
                 android:name="com.google.android.youtube.player.YouTubePlayerSupportFragment"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:transitionName="@string/movie_background_transition"/>
 
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
@@ -67,8 +68,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/main_margin"
                 android:layout_marginTop="@dimen/block_margin"
-                android:textSize="20dp"
+                android:textSize="20sp"
                 android:textStyle="bold"
+                android:transitionName="@string/movie_title_transition"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="The title (2018)" />
@@ -77,8 +79,9 @@
                 android:id="@+id/release_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/main_margin"
+                android:layout_marginStart="@dimen/main_margin"
                 android:layout_marginTop="@dimen/block_margin"
+                android:transitionName="@string/release_date_transition"
                 android:textSize="16sp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/movie_title"
@@ -101,6 +104,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/main_margin"
                 android:textSize="16sp"
+                android:transitionName="@string/vote_avg_transition"
                 app:layout_constraintLeft_toRightOf="@+id/star_icon"
                 app:layout_constraintTop_toBottomOf="@id/release_date"
                 tools:text="9/10" />
